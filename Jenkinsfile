@@ -9,7 +9,7 @@ pipeline {
         }
         stage('Build Docker Image') {
             steps {
-                sh 'oc start-build -F my-api-project --from-dir=.'
+                sh 'oc start-build -F angular-api --from-dir=.'
             }
         }
     }
