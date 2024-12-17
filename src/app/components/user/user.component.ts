@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './user.component.css'
 })
 export class UserComponent {
+
   // Binding the following objects to Input Form
   userObj: any = {
     firstName: '',
@@ -17,6 +18,11 @@ export class UserComponent {
     state: '',
     zipCode: '',
     isTermsAgree: false
+  }
+
+  OnSave() {
+    debugger;
+    const formValue= this.userObj;
   }
 
 }
