@@ -1,0 +1,28 @@
+<p>data-binding works!</p>
+<div class="row">
+    <div class="col-6">
+        <p> 1. Interpolation : one way data binding!</p>
+        <p>EmployeeID => {{employeeId}}</p>
+        <div>Name => {{firstName}}</div>
+        <span>Surname => {{lastName}}</span>
+    </div> 
+    <div class="col-6">
+        <p> 2. Property Binding!</p>
+       
+        <input type="text" [placeholder]="textPlaceHolder" >
+        <br>
+        <input type="text" [value]="firstName" >
+        <br>
+        <input type="text" [value]="lastName" >
+        <div [class]="div1ClassName" style="height: 100px;width: 100px;" >
+
+        </div>
+    </div> 
+</div>
+<div class="row">
+    <div class="col-3">
+        <button class="btn btn-success" (click)="showWelcomeMessage()">
+        Show Welcome Text 
+        </button>
+    </div>
+</div>
