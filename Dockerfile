@@ -8,7 +8,7 @@ WORKDIR /app
 COPY package*.json ./  
 
 # Install dependencies  
-RUN npm install -g @angular/cli
+RUN npm install
 
 # Copy the Angular project files  
 COPY . .  
