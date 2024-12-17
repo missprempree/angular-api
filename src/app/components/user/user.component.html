@@ -1,10 +1,10 @@
 <div class="container">
     <h1>User Form Input</h1>
-<form class="row g-3 needs-validation" novalidate>
+<form #form="ngForm" class="row g-3 needs-validation" novalidate>
     <div class="col-md-4">
       <label  class="form-label">First name <span class="text-danger">*</span></label>
-      <input type="text" class="form-control" name="firstName" #fname="ngModel" required [(ngModel)]="userObj.firstName" >
-       <!--Form Validation-->
+      <input type="text" name="firstName" #fname="ngModel" required [(ngModel)]="userObj.firstName" class="form-control" >
+       <!--Form Validation using if-->
        <div class="text-danger">
             @if(fname.errors?.['required']){
                 <span>First name is required</span>
@@ -12,8 +12,13 @@
         </div>
     </div>
     <div class="col-md-4">
-      <label class="form-label">Last name</label>
-      <input type="text" class="form-control" name="lastName" [(ngModel)]="userObj.lastName">
+      <label class="form-label">Last name <span class="text-danger">*</span></label>
+      <input type="text" name="lastName" #lname="ngModel" minlength="3" required [(ngModel)]="userObj.lastName" class="form-control" >
+      <!--Form Validation using ngIf; gotta import CommonModule in typeScript-->
+      <div class="text-danger">
+         <span *ngIf="lname.errors?.['required']" >Last name is required</span>
+         <span *ngIf="lname.errors?.['minlength']" >Please input at least 3 characters</span>
+      </div>
     </div>
     <div class="col-md-4">
       <label class="form-label">Username</label>
@@ -61,7 +66,7 @@
       </div>
     </div>
     <div class="col-12">
-      <button class="btn btn-primary" type="submit" (click)="OnSave()" >Submit form</button>
+      <button class="btn btn-primary" [disabled]="form.invalid" type="submit" (click)="OnSave()" >Submit form</button>
     </div>
   </form>
 </div>
