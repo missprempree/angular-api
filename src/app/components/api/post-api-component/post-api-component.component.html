@@ -1,0 +1,89 @@
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 text-center">
+            <h2>POST API Integeration</h2>
+        </div>
+        <div class="col-4">
+            <button class="btn btn-primary" (click)="getAllCars()" >Load Car</button>
+        </div>
+    </div>
+    <div class="row pt-2">
+        <div class="col-7">
+            <div class="card">
+                <div class="card-header bg-warning">
+                    <h5>Car List</h5>
+                </div> 
+                <div class="card-body">
+                    <table class="table table-responsive">
+                        <thead>
+                            <th scope="col">#</th>
+                            <th scope="col">Brand</th>
+                            <th scope="col">Model</th>
+                            <th scope="col">Year</th>
+                            <th scope="col">Color</th>
+                            <th scope="col">Registration No</th>
+                            <th scope="col">Daily Rate</th>
+                        </thead>
+                        <tbody>
+                            @for (item of carList; track $index) {
+                                <tr>
+                                    <th scope="row">{{$index+1}}</th>
+                                    <td>{{item.brand}}</td>
+                                    <td>{{item.model}}</td>
+                                    <td>{{item.year}}</td>
+                                    <td>{{item.color}}</td>
+                                    <td>{{item.regNo}}</td>
+                                    <td>{{item.dailyRate}}</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>   
+        <div class="col-5">
+            <div class="card">
+                <div class="card-header bg-warning">
+                    <h5>Create New Car</h5>
+                </div> 
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-6 mt-2">
+                            <label>Registration No</label>
+                            <input type="text" [(ngModel)]="carObj.RegNo" class="form-control" placeholder="Enter Registration No" />
+                        </div>
+                        <div class="col-6 mt-2">
+                            <label>Brand</label>
+                            <input type="text" [(ngModel)]="carObj.Brand" class="form-control" placeholder="Enter Brand" />
+                        </div>
+                        <div class="col-6 mt-2">
+                            <label>Model</label>
+                            <input type="text" [(ngModel)]="carObj.Model" class="form-control" placeholder="Enter Model" />
+                        </div>
+                        <div class="col-6 mt-2">
+                            <label>Year</label>
+                            <input type="text" [(ngModel)]="carObj.Year" class="form-control" placeholder="Enter Year" />
+                        </div>
+                        <div class="col-6 mt-2">
+                            <label>Color</label>
+                            <input type="text" [(ngModel)]="carObj.Color" class="form-control" placeholder="Enter Color" />
+                        </div>
+                        <div class="col-6 mt-2">
+                            <label>Daily Rate</label>
+                            <input type="text" [(ngModel)]="carObj.DailyRate" class="form-control" placeholder="Daily Rate" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 mt-2 text-center">
+                            <button class="btn btn-secondary m-2" (click)="resetForm()" >Reset</button>
+                            <button class="btn btn-primary m-2" (click)="onSave()" >Save</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </div>
+</div>
