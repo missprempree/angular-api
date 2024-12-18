@@ -1,0 +1,11 @@
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: angular-api
+spec:
+  to:
+    kind: Service
+    name: angular-api-service
+  port:
+    targetPort: 4200
+  wildcardPolicy: None

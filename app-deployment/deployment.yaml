@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: angular-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: angular-api
+  template:
+    metadata:
+      labels:
+        app: angular-api
+    spec:
+      containers:
+      - name: angular-api
+        image: docker.io/missprempree/angular-api:latest
+        resources:
+          limits:
+            memory: "1Gi"
+            cpu: "2"
+            ephemeral-storage: "500Mi"
+        ports:
+          - containerPort: 4200
+      imagePullSecrets:
+        - name: dockerhub-secret
+      automountServiceAccountToken: false
+      serviceAccountName: cd-yatphiroon
