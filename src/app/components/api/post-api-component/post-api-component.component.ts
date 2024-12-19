@@ -96,6 +96,25 @@ export class PostApiComponentComponent {
     })
   }
 
+
+
+   onDelete(id: number) {
+    const isDelete = confirm("Are you sure wanting to Delete?");
+    if(isDelete){
+        this.http.delete("api/api/CarRentalApp/DeleteCarbyCarId?carid="+id).subscribe((resultObj: any)=>{
+        if (resultObj.result) {
+            alert("Car has been deleted successfully!")
+            this.resetForm()
+            // this.getAllCars()
+            this.getPaginationCars()
+        } else {
+            alert(resultObj.message)
+        }
+      })
+
+    }
+    
+  }
    /*** Pagination ***/
   updatePagination(): void {
     const start = (this.currentPage - 1) * this.pageSize;

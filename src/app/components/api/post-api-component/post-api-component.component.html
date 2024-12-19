@@ -53,7 +53,8 @@
                               <td>{{item.regNo}}</td>
                               <td>{{item.dailyRate}}</td>
                               <td>
-                                <button class="btn btn-success m-2" (click)="onEdit(item)" >Edit</button>
+                                <button class="btn btn-success btn-sm p-1" (click)="onEdit(item)" >Edit</button>
+                                &nbsp;<button class="btn btn-danger btn-sm p-1" (click)="onDelete(item.carId)" >Delete</button>
                               </td>
                             </tr>
                           </tbody>
