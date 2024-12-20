@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class CustomerService {
+  
 
   apiUrl: string = "api/api/CarRentalApp/"
   constructor(private http: HttpClient) { }
@@ -15,5 +16,13 @@ export class CustomerService {
 
   createCustomer(customerObj:any){
     return this.http.post(this.apiUrl + "CreateNewCustomer", customerObj);
+  }
+
+  updateCustomer(customerObj:any){
+    return this.http.put(this.apiUrl + "UpdateCustomer", customerObj);
+  }
+
+  deleteCustomer(id: number) {
+    return this.http.delete(this.apiUrl + "DeletCustomerById?id="+id);
   }
 }

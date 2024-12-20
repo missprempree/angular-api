@@ -37,6 +37,7 @@ export class CustomerComponent {
   }
 
   getCustomers() {
+    // call the utility service
     this.customerServ.loadCustomers().subscribe((resultObj: any)=>{
       this.customerList = resultObj.data;
     })
@@ -44,13 +45,14 @@ export class CustomerComponent {
 
    /***  Pagination  ***/ 
    getPaginationCustomer() {
-    this.customerServ.loadCustomers().subscribe((resultObj: any) => {
-      this.customerList = resultObj.data;
-      this.totalPages = Math.ceil(this.customerList.length / this.pageSize);
-      this.pages = Array.from({ length: this.totalPages }, (_, i) => i + 1);
-      this.updatePagination();
-    });
-  }
+     // call the utility service
+      this.customerServ.loadCustomers().subscribe((resultObj: any) => {
+        this.customerList = resultObj.data;
+        this.totalPages = Math.ceil(this.customerList.length / this.pageSize);
+        this.pages = Array.from({ length: this.totalPages }, (_, i) => i + 1);
+        this.updatePagination();
+      });
+   }
 
   /*
   constructor(private http:HttpClient){
@@ -86,31 +88,59 @@ export class CustomerComponent {
     }
 
     onSave() {
+      // call the utility service
       this.customerServ.createCustomer(this.customerObj).subscribe((resultObj: any)=>{
         if(resultObj.result){
-          alert('Customer has been created successful');
-          this.getPaginationCustomer();
+          alert("Customer has been created successful!")
+          this.getPaginationCustomer()
+          this.resetForm()
         } else {
-          alert(resultObj.message);
+          alert(resultObj.message)
         }
       })
     }
 
-    onDelete(arg0: any) {
-      throw new Error('Method not implemented.');
-    }
-
-    onEdit(_t24: any) {
-      throw new Error('Method not implemented.');
+    onEdit(data: any) {
+      this.customerObj = data;
     }
 
     onUpdate() {
-      throw new Error('Method not implemented.');
+       // call the utility service
+      this.customerServ.updateCustomer(this.customerObj).subscribe((resultObj: any)=>{
+        if (resultObj.result) {
+            alert("Customer has been updated successful!")
+            this.getPaginationCustomer()
+            this.resetForm()
+        }else{
+            alert(resultObj.message)
+        }
+      })
     }
 
-    
-
+    onDelete(id: number) {
+      const isDelete = confirm("Are you sure wanting to Delete?");
+      if(isDelete) {
+          // call the utility service
+          this.customerServ.deleteCustomer(id).subscribe((resultObj: any)=>{
+          if (resultObj.result) {
+              alert("Customer has been deleted successful!")
+              this.getPaginationCustomer()
+              this.resetForm()
+          } else {
+              alert(resultObj.message)
+          }
+        })
+  
+      }
+    }
+ 
     resetForm() {
-      throw new Error('Method not implemented.');
+      this.customerObj = {
+        "customerId": 0,
+        "customerName": "",
+        "customerCity": "",
+        "mobileNo": "",
+        "email": ""
+      }
     }
 }
