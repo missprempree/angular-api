@@ -5,6 +5,8 @@ import { UserComponent } from './components/user/user.component';
 import { DataBindingComponent } from './components/data-binding/data-binding.component';
 import { GetApiComponentComponent } from './components/api/get-api-component/get-api-component.component';
 import { PostApiComponentComponent } from './components/api/post-api-component/post-api-component.component';
+import { HomeComponent } from './components/home/home.component';
+import { CustomerComponent } from './components/api/customer/customer.component';
 
 export const routes: Routes = [
 
@@ -26,12 +28,20 @@ export const routes: Routes = [
         component: DataBindingComponent
     },
     {
+        path: 'home',
+        component: HomeComponent
+    },
+    {
         path: 'getAPI',
         component: GetApiComponentComponent
     },
     {
         path: 'postAPI',
         component: PostApiComponentComponent
+    },
+    {
+        path: 'customer',
+        component: CustomerComponent
     }
 
 
