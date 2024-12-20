@@ -24,11 +24,14 @@
     </div>
     <div class="row"><br></div>
     <div class="row">
-        <div class="col-3">
+        <div class="col-2">
             <button (click)="getPaginationUsers()" class="btn btn-success">
                 Load User
             </button>
         </div>
+        <div class="col-10">
+          <label>userDataList from api resource has value : </label>&nbsp;<label class="text-primary" >{{userDataList.hasValue()}}</label>
+      </div>
     </div>
     <div class="table-responsive">
         <table class="table">
@@ -87,4 +90,13 @@
           </li>
         </ul>
       </nav>
+      <hr>
+      <div class="row">
+        <h3>userDataList from api resource :</h3>
+        <ul>
+          @for (item of userDataList.value(); track $index) {
+            <li>{{item.name}} - {{item.username}} - {{item.email}} - {{item.phone}}</li>
+          }
+        </ul>
+      </div>
 </div>

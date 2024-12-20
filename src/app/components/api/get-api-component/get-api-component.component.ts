@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, resource } from '@angular/core';
 
 @Component({
   selector: 'app-get-api-component',
@@ -23,6 +23,14 @@ export class GetApiComponentComponent implements OnInit {
   
   constructor(private http: HttpClient){
   }
+
+  // Fetch data from the API resource
+  userDataList = resource({
+    loader:() => {
+      return fetch('https://jsonplaceholder.typicode.com/users').then(
+        (result) => result.json() as Promise<any[]>)
+    }
+  })
 
   getUsers(){
       this.http.get("https://jsonplaceholder.typicode.com/users").subscribe((resultUser:any) => {
